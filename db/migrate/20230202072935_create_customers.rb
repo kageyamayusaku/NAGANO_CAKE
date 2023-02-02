@@ -11,8 +11,7 @@ class CreateCustomers < ActiveRecord::Migration[6.1]
       t.string   :address,            null: false
       t.string   :telephone_number,   null: false
       t.boolean  :is_deleted,         null: false, default: "FALSE"
-      t.datetime :created_at,         null: false, default: "now"
-      t.datetime :updated_at,         null: false, default: "now"
+      t.timestamps
     end
   end
 end
