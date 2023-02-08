@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>NAGANOCake</title>
+    <title>ながのCAKE</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -16,7 +16,7 @@
         <a class="navbar-brand">LOGO</a>
         <div class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
-          <% if customer_signed_in?%>
+          <% if customer_signed_in? %>
             <li>
               <%= link_to "商品一覧", root_path,class:"btn btn-outline-secondary" %>
             </li>
@@ -32,22 +32,35 @@
             <li>
               <%= link_to "ログアウト", root_path,class:"btn btn-outline-secondary" %>
             </li>
+          <% elsif admin_signed_in? %>
+            <li>
+              <%= link_to "About", about_path, class:"btn btn-outline-secondary" %>
+            </li>
+            <li>
+              <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary" %>
+            </li>
+            <li>
+              <%= link_to "新規登録", new_customer_registration_path, class:"btn btn-outline-secondary" %>
+            </li>
+            <li>
+              <%= link_to "ログイン",  new_customer_session_path, class:"btn btn-outline-secondary" %>
+            </li>
           <% else %>
             <li>
-              <%= link_to "About", root_path,class:"btn btn-outline-secondary" %>
+              <%= link_to "About", about_path, class:"btn btn-outline-secondary" %>
             </li>
             <li>
-              <%= link_to "商品一覧", root_path,class:"btn btn-outline-secondary" %>
+              <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary" %>
             </li>
             <li>
-              <%= link_to "新規登録", root_path,class:"btn btn-outline-secondary" %>
+              <%= link_to "新規登録", new_customer_registration_path, class:"btn btn-outline-secondary" %>
             </li>
             <li>
-              <%= link_to "ログイン", root_path,class:"btn btn-outline-secondary" %>
+              <%= link_to "ログイン",  new_customer_session_path, class:"btn btn-outline-secondary" %>
             </li>
           <% end %>
           </ul>
-          </div>
+        </div>
       </div>
     </nav>
   </header>
