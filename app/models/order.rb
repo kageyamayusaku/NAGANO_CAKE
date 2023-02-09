@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+
   enum payment_method:{credit: 0, bank: 1}
   enum status:{
     waiting: 0,
@@ -7,4 +8,8 @@ class Order < ApplicationRecord
     preparation: 3,
     done: 4
   }
+
+  belongs_to :customer
+  has_many :order_details
+
 end
