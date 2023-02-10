@@ -1,8 +1,9 @@
 class Admin::CustomersController < ApplicationController
-  def index
+  def show
   end
 
-  def show
+  def index
+    @customers = Customer.page(params[:page]) # kaminariのmethod #
   end
 
   def edit
