@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="fs-4 px-4 py-3 my-5 bg-light text-dark">会員一覧</div>
+    <div class="fs-4 px-4 py-3 my-5 bg-light text-dark font-weight-bold">会員一覧</div>
   </div>
   <div class="row justify-content-md-center">
     <div class="col-md-8">
@@ -14,21 +14,21 @@
           </tr>
         </thead>
         <tbody>
-        <% @customers.each do |t| %>
+        <% @customers.each do |f| %>
           <tr>
             <td>
-              <%= t.id %>
+              <%= f.id %>
             </td>
             <td>
-              <%= link_to admin_customer_path(t.id) do %>
-                <%= t.last_name %><%= t.first_name %>
+              <%= link_to admin_customer_path(f.id) do %>
+                <%= f.full_name %>
               <% end %>
             </td>
             <td class="text-break">
-              <%= t.email %>
+              <%= f.email %>
             </td>
             <td class="text-break">
-              <%= t.is_delete %>
+              <%= f.is_delete %>
             </td>
           </tr>
         <% end %>

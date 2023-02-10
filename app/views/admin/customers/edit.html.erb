@@ -1,2 +1,55 @@
-<h1>Admin::Customers#edit</h1>
-<p>Find me in app/views/admin/customers/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="fs-4 px-4 py-3 my-5 bg-light text-dark font-weight-bold">
+      <%= @customer.full_name %><span class="font-weight-normal">さんの</span>会員情報編集
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-md-10">
+      <%= form_with model: @customer, method: :patch do |f| %>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td>会員ID</td>
+            <td><%= f.id %></td>
+          </tr>
+          <tr>
+            <td>氏名</td>
+            <td><%= f.text_field :last_name %>  <%= f.text_field :first_name %></td>
+          </tr>
+          <tr>
+            <td>フリガナ</td>
+            <td><%= f.text_field :last_name_kana %>  <%= f.text_field :first_name_kana %></td>
+          </tr>
+          <tr>
+            <td>郵便番号</td>
+            <td><%= f.text_field :postal_code %></td>
+          </tr>
+          <tr>
+            <td>住所</td>
+            <td><%= f.text_field :address %></td>
+          </tr>
+          <tr>
+            <td>電話番号</td>
+            <td><%= f.text_field :telephone_number %></td>
+          </tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= f.text_field :email %></td>
+          </tr>
+          <tr>
+            <td>会員ステータス</td>
+            <td><%= f.check_box :is_deleted, {} , "true", "false" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <%= f.submit '変更を保存', class: "btn btn-lg btn-success" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>
