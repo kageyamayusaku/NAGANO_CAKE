@@ -1,2 +1,53 @@
-<h1>Admin::Items#index</h1>
-<p>Find me in app/views/admin/items/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="fs-4 px-4 py-3 my-5 bg-light text-dark font-weight-bold">会員一覧</div>
+    <div class="float-right">
+      <%= link_to new_admin_item_path do %>
+      <i class="fal fa-plus"></i>
+      <% end %>
+    </div>
+  </div>
+  <div class="row justify-content-md-center">
+    <div class="col-md-8">
+      <table class="table table-hover table-inverse">
+        <thead>
+          <tr>
+            <th>商品ID</th>
+            <th>商品名</th>
+            <th>税抜価格</th>
+            <th>ジャンル</th>
+            <th>ステータス</th>
+          </tr>
+        </thead>
+        <tbody>
+        <% @items.each do |f| %>
+          <tr>
+            <td>
+              <%= f.id %>
+            </td>
+            <td>
+              <%= link_to admin_item_path(f.id), class: "text-body" do %>
+              <u><%= f.name %></u>
+              <% end %>
+            </td>
+            <td>
+              <%= f.price %>
+            </td>
+            <td>
+              <%#= f.genre_id %>
+            </td>
+            <td>
+            <% if f.is_active = "true" %>
+              <li class="list-unstyled text-success"><strong>販売中</strong></li>
+            <% else %>
+              <li class="list-unstyled text-muted"><strong>販売停止中</strong></li>
+            <% end %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+      <%= paginate @items %>
+    </div>
+  </div>
+</div>

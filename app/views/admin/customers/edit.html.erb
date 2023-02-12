@@ -38,8 +38,17 @@
             <td><%= f.text_field :email %></td>
           </tr>
           <tr>
-            <td>会員ステータス</td>
-            <td><%= f.check_box :is_deleted, {} , "true", "false" %></td>
+            <td class="d-block">会員ステータス</td>
+            <td>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
+                <label class="form-check-label" for="exampleRadios1">有効</label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
+                <label class="form-check-label" for="exampleRadios2">退会</label>
+              </div>
+            </td>
           </tr>
           <tr>
             <td></td>
