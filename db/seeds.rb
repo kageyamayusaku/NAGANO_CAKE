@@ -12,6 +12,8 @@ Admin.create!(
 )
 
 Customer.create!(
+ [
+  {
    last_name: '影山',
    first_name: '勇作',
    last_name_kana: 'カゲヤマ',
@@ -21,5 +23,19 @@ Customer.create!(
    address: '名古屋市天白区',
    postal_code: '468-0000',
    telephone_number: '090-5613-1902',
-   is_delete: 'false'
+   is_deleted: false
+  },
+  {
+   last_name: '則定',
+   first_name: '南菜子',
+   last_name_kana: 'ノリサダ',
+   first_name_kana: 'ナナコ',
+   email: 'c@c',
+   password: 'cccccc',
+   address: '名古屋市緑区',
+   postal_code: '468-1111',
+   telephone_number: '090-1111-1111',
+   is_deleted: true
+  }
+ ]
 )
