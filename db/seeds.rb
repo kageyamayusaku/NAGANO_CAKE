@@ -40,10 +40,14 @@ Customer.create!(
  ]
 )
 
-#Item.create!(
-#   genre_id: '1',
-#   name: 'シュトーレン',
-#   introduction: 'ドイツ発祥のケーキ。保存が効くため、クリスマスのカウントダウンとして食べる。',
-#   price: '2980',
-#   is_active: 'true'
-#)
+Genre.create!(
+   name: "ケーキ"
+ )
+
+Item.create!(
+   genre_id: 1,
+   name: 'シュトーレン',
+   introduction: 'ドイツ発祥のケーキ。保存が効くため、クリスマスのカウントダウンとして食べる。',
+   price: '2980',
+   is_active: true
+)

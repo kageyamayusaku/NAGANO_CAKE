@@ -28,7 +28,7 @@
               <%= f.email %>
             </td>
             <td>
-            <% if f.is_deleted = "false" %>
+            <% if f.is_deleted == false %>
               <li class="list-unstyled text-success"><strong>有効</strong></li>
             <% else %>
               <li class="list-unstyled text-muted"><strong>退会</strong></li>
