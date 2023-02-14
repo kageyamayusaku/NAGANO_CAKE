@@ -45,9 +45,20 @@ Genre.create!(
  )
 
 Item.create!(
+ [
+  {
    genre_id: 1,
    name: 'シュトーレン',
    introduction: 'ドイツ発祥のケーキ。保存が効くため、クリスマスのカウントダウンとして食べる。',
    price: '2980',
    is_active: true
+  },
+  {
+   genre_id: 1,
+   name: 'ザッハトルテ',
+   introduction: '古典的なチョコレートの一種。',
+   price: '3980',
+   is_active: false
+  }
+ ]
 )
