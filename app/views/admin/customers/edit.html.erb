@@ -40,14 +40,8 @@
           <tr>
             <td class="d-block">会員ステータス</td>
             <td>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-                <label class="form-check-label" for="exampleRadios1">有効</label>
-              </div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                <label class="form-check-label" for="exampleRadios2">退会</label>
-              </div>
+              <%= f.radio_button(:is_deleted, 0, :checked =>  !@customer.is_deleted) %>有効
+              <%= f.radio_button(:is_deleted, 1, :checked =>  @customer.is_deleted) %>退会
             </td>
           </tr>
           <tr>
