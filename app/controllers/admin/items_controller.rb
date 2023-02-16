@@ -28,7 +28,6 @@ class Admin::ItemsController < ApplicationController
   def update
   end
 
-
   private
 
   def item_params
