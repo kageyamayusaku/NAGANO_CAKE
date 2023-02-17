@@ -71,7 +71,7 @@ Order.create!(
    address: '名古屋市天白区',
    name: '影山勇作',
    shipping_cost: '1000',
-   total_payment: '3500',
+   total_payment: '4279',
    payment_method: 0,
    status: 0,
   },
@@ -80,8 +80,8 @@ Order.create!(
    postal_code: '468-1111',
    address: '名古屋市緑区',
    name: '則定南菜子',
-   shipping_cost: '2000',
-   total_payment: '4500',
+   shipping_cost: '0',
+   total_payment: '4379',
    payment_method: 1,
    status: 1,
   }
@@ -93,14 +93,14 @@ OrderDetail.create!(
   {
    item_id: 1,
    order_id: 1,
-   price: '3500',
+   price: '3279',
    amount: 1,
    making_status: 0,
   },
   {
    item_id: 2,
    order_id: 2,
-   price: '4500',
+   price: '4379',
    amount: 2,
    making_status: 1,
   }

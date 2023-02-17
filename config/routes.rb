@@ -30,9 +30,9 @@ Rails.application.routes.draw do
     resources :items, except: [:destroy]
     resources :genres, except: [:new, :show, :destroy]
     resources :customers, except: [:new, :create, :destroy]
-    get 'orders' => "orders#show"
-    patch 'orders' => "orders#update"
-    patch 'order_details' => "order_details#update"
+    get 'orders/:id' => "orders#show"
+    patch 'orders/:id' => "orders#update"
+    patch 'orders/:order_id/order_details/:id' => "order_details#update"
   end
 
 end

@@ -7,40 +7,92 @@
   <div class="row">
     <div class="col-md-12">
       <table class="table table-borderless">
-        <tbody>
-          <tr>
-            <th>購入者</th>
-            <td>
-              <%= link_to admin_customer_path(@order.customer.id), class: "text-body" do %>
-              <u><%= @order.name %></u>
-              <% end %>
-            </td>
-          </tr>
-          <tr>
-            <th>注文日</th>
-            <td><%= @order.created_at.to_s(:datetime_jp) %></td>
-          </tr>
-          <tr>
-            <th>配送先</th>
-            <td><%= @order.postal_code %>　<%= @order.address %><br><%= @order.name %></%></td>
-          </tr>
-          <tr>
-            <th>支払方法</th>
-            <td><%= @order.payment_method %></td>
-          </tr>
-          <tr>
-            <th>注文ステータス</th>
-            <td>
-            <%= form_with model: @order, url: admin_orders_path, method: :patch do |f| %>
-              <%= f.select :status, Order.all.map { |status| [order.status]} %>
-              <%= link_to "更新", admin_orders_path(f.id), class: "btn btn-success" %>
+        <tr>
+          <th>購入者</th>
+          <td>
+            <%= link_to admin_customer_path(@order.customer.id), class: "text-body" do %>
+            <u><%= @order.name %></u>
             <% end %>
-            </td>
-          </tr>
-        </tbody>
+          </td>
+        </tr>
+        <tr>
+          <th>注文日</th>
+          <td><%= @order.created_at.to_s(:datetime_jp) %></td>
+        </tr>
+        <tr>
+          <th>配送先</th>
+          <td>〒<%= @order.postal_code %>　<%= @order.address %><br><%= @order.name %></%></td>
+        </tr>
+        <tr>
+          <th>支払方法</th>
+          <td><%= @order.payment_method %></td>
+        </tr>
+        <tr>
+          <th>注文ステータス</th>
+          <td>
+          <%= form_with model: @order, url: admin_path, method: :patch do |f| %>
+            <%= f.select :status, Order.all.map { |order| [order.status]} %>
+            <%= link_to "更新", admin_path(@order.id), class: "btn btn-success" %>
+          <% end %>
+          </td>
+        </tr>
       </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-9">
+      <table class="table">
+        <tr class="table-secondary">
+          <th>商品名</th>
+          <th>単価（税込）</th>
+          <th>数量</th>
+          <th>小計</th>
+          <th>制作ステータス</th>
+        </tr>
+        <% @order.order_details.each do |f| %>
+        <tr>
+          <td>
+            <%= f.item.name %>
+          </td>
+          <td>
+            <%= f.item.price %>
+          </td>
+          <td>
+            <%= f.amount %>
+          </td>
+          <td>
+            <%= f.price %>
+          </td>
+          <td>
+          <%= form_with model: @order_details, url: admin_path, method: :patch do |f| %>
+            <%= f.select :making_status, OrderDetail.all.map { |order_details| [order_details.making_status]} %>
+            <%= link_to "更新", admin_path(@order.id), class: "btn btn-success" %>
+          <% end %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-md-3">
       <table>
-
+        <tr>
+          <th>商品合計</th>
+          <td>
+            <%=  %>
+          </td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td>
+            <%= @order.shipping_cost %>
+          </td>
+        </tr>
+        <tr>
+          <th>請求額合計</th>
+          <th>
+            <%= @order.total_payment %>
+          </th>
+        </tr>
       </table>
     </div>
   </div>
