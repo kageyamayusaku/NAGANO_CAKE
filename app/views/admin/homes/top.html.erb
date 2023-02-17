@@ -14,10 +14,20 @@
           </tr>
         <% @order_details.each do |f| %>
           <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+            <td>
+              <%= link_to admin_orders_path(f.id), class: "text-body" do %>
+              <u><%= f.order.created_at.to_s(:datetime_jp) %></u>
+              <% end %>
+            </td>
+            <td>
+              <%= f.order.name %>
+            </td>
+            <td>
+              <%= f.amount %>
+            </td>
+            <td>
+              <%= f.order.status %>
+            </td>
           </tr>
         <% end %>
         </tbody>
