@@ -10,7 +10,12 @@ class OrderDetail < ApplicationRecord
   belongs_to :order
   belongs_to :item
 
-  def price
+  def tax_price
+    (price * 1.1).floor
+  end
+
+  def subtotal
+    tax_price * amount
   end
 
 end

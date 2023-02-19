@@ -29,7 +29,12 @@
         </div>
       </div>
       <div>
-        <h1>新着商品</h1>
+        <h1 style="font-size: 30px;">新着商品</h1>
+          <% @items.each do |f| %>
+          <div><%= image_tag f.get_image %></div>
+          <div>商品名<%= f.name %></div>
+          <div>¥<%= f.price.to_s(:delimited) %></div>
+          <% end %>
       </div>
     </div>
   </div>

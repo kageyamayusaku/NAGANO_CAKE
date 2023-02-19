@@ -30,9 +30,9 @@
         <tr>
           <th>注文ステータス</th>
           <td>
-          <%= form_with model: @order, url: admin_path, method: :patch do |f| %>
-            <%= f.select :status, Order.all.map { |order| [order.status]} %>
-            <%= link_to "更新", admin_path(@order.id), class: "btn btn-success" %>
+          <%= form_with model: @order, url: admin_order_path, method: :patch do |f| %>
+            <%= f.select :status, Order.statuses_i18n.invert %>
+            <%= f.submit '更新', class: "btn btn-success" %>
           <% end %>
           </td>
         </tr>
@@ -49,28 +49,28 @@
           <th>小計</th>
           <th>制作ステータス</th>
         </tr>
-        <% @order.order_details.each do |f| %>
+        <% @order.order_details.each do |order_detail| %>
         <tr>
           <td>
-            <%= f.item.name %>
+            <%= order_detail.item.name %>
           </td>
           <td>
-            <%= f.item.price %>
+            <%= order_detail.tax_price %>
           </td>
           <td>
-            <%= f.amount %>
+            <%= order_detail.amount %>
           </td>
           <td>
-            <%= f.price %>
+            <%= order_detail.subtotal %>
           </td>
           <td>
-          <%= form_with model: @order_details, url: admin_path, method: :patch do |f| %>
-            <%= f.select :making_status, OrderDetail.all.map { |order_details| [order_details.making_status]} %>
-            <%= link_to "更新", admin_path(@order.id), class: "btn btn-success" %>
+          <%= form_with model: order_detail, url: admin_order_order_detail_path(@order.id,order_detail.id), method: :patch do |f| %>
+            <%= f.select :making_status, OrderDetail.making_statuses_i18n.invert %>
+            <%= f.submit '更新', class: "btn btn-success" %>
           <% end %>
           </td>
         </tr>
-        <% end %>
+        
       </table>
     </div>
     <div class="col-md-3">
@@ -78,9 +78,10 @@
         <tr>
           <th>商品合計</th>
           <td>
-            <%=  %>
+            <% @total += order_detail.subtotal %>
           </td>
         </tr>
+        <% end %>
         <tr>
           <th>送料</th>
           <td>
