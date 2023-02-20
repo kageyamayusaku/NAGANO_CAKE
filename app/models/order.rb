@@ -12,8 +12,4 @@ class Order < ApplicationRecord
   belongs_to :customer
   has_many :order_details
 
-  def total_payment
-    total + shipping_cost
-  end
-
 end
