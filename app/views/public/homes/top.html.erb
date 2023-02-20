@@ -5,15 +5,15 @@
         <tr style="border: 1px solid;">
           <th><strong>　　　　　ジャンル検索　　　　　</strong></th>
         </tr>
+        <% @genres.each do |f| %>
         <tr>
-          <% @genres.each do |f| %>
           <td>　　<%= f.name %></td>
-          <% end %>
         </tr>
+        <% end %>
       </table>
     </div>
-    <div class="col-6">
-      <div class="card">
+    <div class="col-9">
+      <div class="card" style="width: 600px;">
         <img class="card-img" src="/assets/nagano_cake.jpg" height="350">
         <div class="card-img-overlay">
           <div class="card-card bg-white" style="border: 1.5px solid;">
@@ -30,11 +30,20 @@
       </div>
       <div>
         <h1 style="font-size: 30px;">新着商品</h1>
-          <% @items.each do |f| %>
-          <div><%= image_tag f.get_image %></div>
-          <div>商品名<%= f.name %></div>
-          <div>¥<%= f.price.to_s(:delimited) %></div>
+        <table>
+          <tr>
+          <% @items.first(4).each do |f| %>
+            <td>
+              <div><%= image_tag f.get_image, :size => '200x170' %></div>
+              <div>商品名：<%= f.name %></div>
+              <div>¥<%= f.price.to_s(:delimited) %></div>
+            </td>
           <% end %>
+          </tr>
+        </table>
+      </div>
+      <div class="text-right">
+        <%= link_to "全ての商品を見る＞", items_path %>
       </div>
     </div>
   </div>

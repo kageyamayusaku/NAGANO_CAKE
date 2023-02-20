@@ -1,26 +1,48 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="container">
+  <div class="row">
+    <div class="my-4 bg-light text-dark" style="margin-left: 150px; font-size: 18px;">
+      <strong>　ログイン　</strong>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%#= render "public/shared/links" %>
+  <div class="row">
+    <div class="mb-4 bg-light text-dark" style="margin-left: 200px;">
+      <strong>　会員の方はこちらからログイン　</strong>
+    </div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-8">
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <table class="table table-borderless">
+          <tr class="d-flex">
+            <td class="col-3">メールアドレス</td>
+            <td class="col-5">
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+            </td>
+          </tr>
+          <tr class="d-flex">
+            <td class="col-3">パスワード</td>
+            <td class="col-5">
+              <%= f.password_field :password, autocomplete: "current-password" %>
+            </td>
+          </tr>
+          <tr class="d-flex">
+            <td class="col-3"></td>
+            <td class="col-5">
+              <%= f.submit "ログイン" , class: "btn btn-primary" %>
+            </td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="my-4 bg-light text-dark" style="margin-left: 200px;">
+      <strong>　会員登録がお済みでない方　</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div style="margin-left: 350px;">
+      <%= link_to "こちら", new_customer_registration_path %>　から新規登録を行ってください。
+    </div>
+  </div>
+</div>

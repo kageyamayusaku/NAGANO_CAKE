@@ -1,4 +1,6 @@
 class Public::AddressesController < ApplicationController
+  before_action :authenticate_costomer!
+
   def index
   end
 
