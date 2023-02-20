@@ -9,14 +9,20 @@ class Public::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    @customer = Customer.new
+  end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @customer = Customer.new(customer_params)
+    if @customer.save
+      flash[:notice] = ""
+      redirect_to customers_my_page_path
+    else
+      render :new
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -63,4 +69,11 @@ class Public::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  private
+
+  def customer_params
+    params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email, :password, :password_confirmation)
+  end
+
 end
