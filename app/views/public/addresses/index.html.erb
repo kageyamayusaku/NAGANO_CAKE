@@ -1,0 +1,78 @@
+<div class="container">
+  <div class="row my-4">
+    <div class="bg-light text-dark" style="margin-left: 150px; font-size: 20px;">
+      <strong>　配送先登録/一覧　</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <%= form_with model: @address, url: addresses_path, method: :create do |f| %>
+      <table class="table table-borderless">
+        <tr>
+          <th class="col-3">郵便番号(ハイフンなし)</th>
+          <td class="col-6">
+            <%= f.number_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "0000000" %>
+          </td>
+          <td class="col-3"></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td>
+            <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control", placeholder: "東京都渋谷区代々木神園町0-0" %>
+          </td>
+        </tr>
+        <tr>
+          <th>宛名</th>
+          <td>
+            <%= f.text_field :name, autofocus: true, autocomplete: "last_name", placeholder: "令和道子" %>
+          </td>
+          <td>
+            <%= f.submit "　新規登録　" , class: "btn btn-success" %>
+          </td>
+        </tr>
+      </table>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-9">
+      <table class="table table-bordered" style="border: 1.5px solid black;">
+        <thead>
+          <tr>
+            <th class="table-secondary col-2" style="border: 1.5px solid black;">
+              郵便番号
+            </th>
+            <th class="table-secondary col-5" style="border: 1.5px solid black;">
+              住所
+            </th>
+            <th class="table-secondary col-2" style="border: 1.5px solid black;">
+              宛名
+            </th>
+            <th class="table-secondary col-3" style="border: 1.5px solid black;">
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @addresses.each do |address| %>
+          <tr>
+            <td style="border: 1.5px solid black;">
+              <%= f.postal_code %>
+            </td>
+            <td style="border: 1.5px solid black;">
+              <%= f.address %>
+            </td>
+            <td style="border: 1.5px solid black;">
+              <%= f.name %>
+            </td>
+            <td style="border: 1.5px solid black;">
+              <%= link_to "編集する", edit_address_path(current_customer), class: "btn btn-success" %>
+              <p>　</p>
+              <%= link_to "削除する", address_path(current_customer), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
