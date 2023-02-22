@@ -56,18 +56,18 @@
           <% @addresses.each do |address| %>
           <tr>
             <td style="border: 1.5px solid black;">
-              <%= f.postal_code %>
+              <%= address.postal_code %>
             </td>
             <td style="border: 1.5px solid black;">
-              <%= f.address %>
+              <%= address.address %>
             </td>
             <td style="border: 1.5px solid black;">
-              <%= f.name %>
+              <%= address.name %>
             </td>
             <td style="border: 1.5px solid black;">
-              <%= link_to "編集する", edit_address_path(current_customer), class: "btn btn-success" %>
+              <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success" %>
               <p>　</p>
-              <%= link_to "削除する", address_path(current_customer), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
+              <%= link_to "削除する", address_path(address.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
             </td>
           </tr>
           <% end %>

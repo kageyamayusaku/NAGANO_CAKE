@@ -1,5 +1,6 @@
 class Public::AddressesController < ApplicationController
   before_action :authenticate_customer!
+  protect_from_forgery
 
   def index
     @address = Address.new
@@ -7,25 +8,34 @@ class Public::AddressesController < ApplicationController
   end
 
   def edit
-    @address = current_customer
+    @address = Address.find(params[:id])
   end
 
   def create
     @address = Address.new(address_params)
     if @address.save
       flash[:notice] = ""
-      redirect_to addresses_path
+      redirect_to action: :index
     else
+      @addresses = Address.all
       render :index
     end
   end
 
   def update
-    @address = current_customer
+    @address = Address.find(params[:id])
+    if @address.update(address_params)
+      flash[:notice] = ""
+      redirect_to addresses_path
+    else
+      render :edit
+    end
   end
 
   def destroy
-    @address = current_customer
+    address = Address.find(params[:id])
+    address.destroy
+    redirect_to action: :index
   end
 
   private
