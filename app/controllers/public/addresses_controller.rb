@@ -1,6 +1,5 @@
 class Public::AddressesController < ApplicationController
   before_action :authenticate_customer!
-  protect_from_forgery
 
   def index
     @address = Address.new
@@ -13,6 +12,7 @@ class Public::AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
+    @address.customer_id = current_customer.id
     if @address.save
       flash[:notice] = ""
       redirect_to action: :index
