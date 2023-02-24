@@ -42,13 +42,13 @@
             <th class="table-secondary col-2" style="border: 1.5px solid black;">
               郵便番号
             </th>
-            <th class="table-secondary col-5" style="border: 1.5px solid black;">
+            <th class="table-secondary col-4" style="border: 1.5px solid black;">
               住所
             </th>
             <th class="table-secondary col-2" style="border: 1.5px solid black;">
               宛名
             </th>
-            <th class="table-secondary col-3" style="border: 1.5px solid black;">
+            <th class="table-secondary col-4" style="border: 1.5px solid black;">
             </th>
           </tr>
         </thead>
@@ -65,9 +65,11 @@
               <%= address.name %>
             </td>
             <td style="border: 1.5px solid black;">
-              <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success" %>
-              <p>　</p>
-              <%= link_to "削除する", address_path(address.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
+              <div class="btn-toolbar">
+                <%= link_to "編集する", edit_address_path(address.id), class: "btn btn-success" %>
+                <p>　</p>
+                <%= link_to "削除する", address_path(address.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
+              </div>
             </td>
           </tr>
           <% end %>

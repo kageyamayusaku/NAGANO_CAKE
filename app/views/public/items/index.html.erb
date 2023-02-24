@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-3">
+      <table style="border: 1px solid;">
+        <tr style="border: 1px solid;">
+          <th><strong>　　　　　ジャンル検索　　　　　</strong></th>
+        </tr>
+        <% @genres.each do |f| %>
+        <tr>
+          <td>　　<%= f.name %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-9">
+      <p style="font-size: 30px; display: inline-block;">商品一覧</p>
+      <p style="font-size: 20px; display: inline-block;">(全<%= @items.count %>件)</p>
+      <div class="d-flex flex-wrap">
+        <% @items2.first(8).each do |f| %>
+        <table class="mb-3 mr-1">
+          <td>
+            <%= link_to item_path(f.id) do %>
+              <%= image_tag f.get_image, :size => '200x170' %>
+            <% end %>
+            <div>商品名：<%= f.name %></div>
+            <div>¥<%= f.price.to_s(:delimited) %></div>
+          </td>
+        </table>
+        <% end %>
+      </div>
+      <div class="row mt-4 justify-content-center">
+        <%= paginate @items2 %>
+      </div>
+    </div>
+  </div>
+</div>
