@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row my-5">
+    <div class="col-3">
+      <table style="border: 1px solid;">
+        <tr style="border: 1px solid;">
+          <th><strong>　　　　　ジャンル検索　　　　　</strong></th>
+        </tr>
+        <% @genres.each do |f| %>
+        <tr>
+          <td>　　<%= f.name %></td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+    <div class="col-4">
+      <%= image_tag @item.get_image, :size => '350x300' %>
+    </div>
+    <div class="col-5">
+      <div style="font-size: 30px; font-weight: bold;">
+        <%= @item.name %>
+      </div>
+      <div style="font-size: 22px; overflow-wrap: break-word;">
+        <%= @item.introduction %>
+      </div>
+      <div class="mt-5" style="font-size: 25px; font-weight: bold; display: inline-block;">
+        ¥<%= @item.with_tax_price.to_s(:delimited) %>
+      </div>
+      <div style="font-size: 15px; display: inline-block;">
+        (税込)
+      </div>
+      <%= form_with model: @cart_item do |f| %>
+      <%= f.hidden_field :item_id, :value => @item.id %>
+      <div class="mt-5" style="display: inline-block;">
+        <%= f.select :amount, *[1..10] %>
+      </div>
+      <div style="display: inline-block;">
+        <%= f.submit "カートに入れる", class: "btn btn-success" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

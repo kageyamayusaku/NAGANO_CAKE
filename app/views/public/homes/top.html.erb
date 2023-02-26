@@ -34,7 +34,11 @@
           <tr>
           <% @items.first(4).each do |f| %>
             <td>
-              <div><%= image_tag f.get_image, :size => '200x170' %></div>
+              <div>
+                <%= link_to item_path(f.id) do %>
+                  <%= image_tag f.get_image, :size => '200x170' %>
+                <% end %>
+              </div>
               <div>商品名：<%= f.name %></div>
               <div>¥<%= f.price.to_s(:delimited) %></div>
             </td>
