@@ -3,22 +3,32 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = CartItem.all
-    @total = @cart_items.inject(0) { |sum, item| sum + subtotal }
+    @total = 0
   end
 
   def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.customer_id = current_customer.id
+    @cart_item.update(cart_item_params)
+    redirect_to action: :index
   end
 
   def destroy
+    cart_item = CartItem.find(params[:id])
+    cart_item.destroy
+    redirect_to action: :index
   end
 
   def destroy_all
+    cart_items = CartItem.all
+    current_customer.cart_items.destroy_all
+    redirect_to action: :index
   end
 
   def create
     @cart_item = CartItem.new(cart_item_params)
+    @cart_item.customer_id = current_customer.id
     @cart_item.save
-    flash[:notice] = ""
     redirect_to action: :index
   end
 

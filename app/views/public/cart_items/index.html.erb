@@ -3,6 +3,9 @@
     <div class="bg-light text-dark" style="margin-left: 150px; font-size: 20px;">
       <strong>　ショッピングカート　</strong>
     </div>
+    <div class="ml-auto" style="margin-right: 120px;">
+      <%= link_to "カートを空にする", cart_items_destroy_all_path, method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
+    </div>
   </div>
   <div class="row justify-content-center">
     <div class="col-10">
@@ -23,10 +26,10 @@
           <td class="col-2 table-secondary" style="border: 1.5px solid black;">
           </td>
         </tr>
-        <%= @cart_items.each do |cart_item| %>
+        <% @cart_items.each do |cart_item| %>
         <tr>
           <td style="border: 1.5px solid black; font-weight: bold;">
-            <%= image_tag f.item.get_image, :size => '50x50' %>
+            <%= image_tag cart_item.item.get_image, :size => '50x40' %>
             <%= cart_item.item.name %>
           </td>
           <td style="border: 1.5px solid black; font-weight: bold;">
@@ -39,12 +42,13 @@
             <% end %>
           </td>
           <td style="border: 1.5px solid black; font-weight: bold;">
-            <%= cart_item.subtotal %>
+            <%= cart_item.subtotal.to_s(:delimited) %>
           </td>
           <td style="border: 1.5px solid black;">
             <%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, "data-confirm" => "本当に消しますか？", class: "btn btn-danger" %>
           </td>
         </tr>
+        <% @total += cart_item.subtotal %>
         <% end %>
       </table>
       <div class="row" style="margin: 30px 0 30px 50px;">
