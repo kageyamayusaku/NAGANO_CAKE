@@ -38,22 +38,45 @@
           <p style="margin-left: 25px;">
             <%= current_customer.full_name %>
           </p>
-　　　　</div>
-
-        <div style="margin-top: -20px;">
+        </div>
+        <div>
           <label>
-    　　      <%= f.radio_button :address, 1 %>
-     　　     登録済住所から選択
+            <%= f.radio_button :address, 1 %>
+            登録済住所から選択
           </label>
-          <div>
+          <div style="margin-left: 25px;">
             <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
           </div>
         </div>
-
-        <div>
+        <div style="margin-top: 20px;">
           <label>
-          <%= f.radio_button :address, 2 %>
+            <%= f.radio_button :address, 2 %>
+            新しいお届け先
           </label>
+          <table>
+            <tr>
+              <td class="col-3" style="font-size: 13px">郵便番号(ハイフンなし)</td>
+              <td class="col-3">
+                <%= f.number_field :postal_code, autofocus: true, autocomplete: "postal_code", placeholder: "0000000" %>
+              </td>
+              <td></td>
+            </tr>
+            <tr>
+              <td class="col-3" style="font-size: 13px">住所</td>
+              <td class="col-8">
+                <%= f.text_field :address, autofocus: true, autocomplete: "address", class: "form-control", placeholder: "東京都渋谷区代々木神園町0-0" %>
+              </td>
+            </tr>
+            <tr>
+              <td class="col-3" style="font-size: 13px">宛名</td>
+              <td class="col-3">
+                <%= f.text_field :name, autofocus: true, autocomplete: "last_name", placeholder: "令和道子" %>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="row justify-content-center">
+          <%= f.submit "　確認画面へ進む　" , class: "btn btn-primary" %>
         </div>
         <% end %>
       </div>
