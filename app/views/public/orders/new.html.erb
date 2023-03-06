@@ -28,7 +28,7 @@
       　<%= form_with model: @order, url: orders_confirm_path do |f| %>
         <div>
           <label>
-            <%= f.radio_button :address, 0, :checked => "checked" %>
+            <%= f.radio_button :select, 0, :checked => "checked" %>
             ご自身の住所
           </label>
           <p style="margin: -10px 0 0 25px;">
@@ -41,7 +41,7 @@
         </div>
         <div>
           <label>
-            <%= f.radio_button :address, 1 %>
+            <%= f.radio_button :select, 1 %>
             登録済住所から選択
           </label>
           <div style="margin-left: 25px;">
@@ -50,7 +50,7 @@
         </div>
         <div style="margin-top: 20px;">
           <label>
-            <%= f.radio_button :address, 2 %>
+            <%= f.radio_button :select, 2 %>
             新しいお届け先
           </label>
           <table>
