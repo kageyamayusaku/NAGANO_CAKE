@@ -9,8 +9,8 @@
       <div style="font-size: 20px;">
         <strong>支払方法</strong>
       </div>
+      <%= form_with model: @order, url: orders_confirm_path do |f| %>
       <div style="margin-left: 50px;">
-        <%= form_with model: @order, url: orders_confirm_path do |f| %>
         <div>
           <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
           <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
@@ -19,14 +19,12 @@
           <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
           <%= f.label :payment_method_transfer, Order.payment_methods_i18n[:transfer] %>
         </div>
-        <% end %>
       </div>
-      <div style="font-size: 20px; margin: 10px 0 -20px 0;">
+      <div style="font-size: 20px; margin-top: 10px;">
         <strong>お届け先</strong>
       </div>
       <div style="margin-left: 50px;">
-      　<%= form_with model: @order, url: orders_confirm_path do |f| %>
-        <div>
+        <div class="address">
           <label>
             <%= f.radio_button :select, 0, :checked => "checked" %>
             ご自身の住所
@@ -39,7 +37,7 @@
             <%= current_customer.full_name %>
           </p>
         </div>
-        <div>
+        <div class="address">
           <label>
             <%= f.radio_button :select, 1 %>
             登録済住所から選択
@@ -48,7 +46,7 @@
             <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display) %>
           </div>
         </div>
-        <div style="margin-top: 20px;">
+        <div class="address" style="margin-top: 20px;">
           <label>
             <%= f.radio_button :select, 2 %>
             新しいお届け先
@@ -78,8 +76,8 @@
         <div class="row justify-content-center">
           <%= f.submit "　確認画面へ進む　" , class: "btn btn-primary" %>
         </div>
-        <% end %>
       </div>
+      <% end %>
     </div>
   </div>
 </div>
