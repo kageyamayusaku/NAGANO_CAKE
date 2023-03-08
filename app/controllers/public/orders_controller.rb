@@ -28,6 +28,7 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    @order.shipping_cost = 500
     @order.customer_id = current_customer.id
     @order.save
     redirect_to orders_complete_path
@@ -42,7 +43,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name)
   end
 
 end

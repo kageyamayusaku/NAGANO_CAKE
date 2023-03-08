@@ -50,7 +50,7 @@
             送料
           </td>
           <td style="border: 1.5px solid black; font-weight: bold;">
-            <%#= @order.shipping_cost.to_s(:delimited) %>
+            500
           </td>
         </tr>
         <tr>
@@ -66,7 +66,7 @@
             請求金額
           </td>
           <td style="border: 1.5px solid black; font-weight: bold;">
-            <%#= [@order.shipping_cost + @total].to_s(:delimited) %>
+            <%= (500 + @total).to_s(:delimited) %>
           </td>
         </tr>
       </table>
@@ -93,7 +93,7 @@
   </div>
   <div class="row justify-content-center">
     <%= form_with model: @order, url: orders_path, method: :post do |f| %>
-      <%#= f.hidden_field :item_id, :value => @item.id %>
+      <%= f.hidden_field :item_id, :value => @item.id %>
       <%= f.submit "　注文を確定する　" , class: "btn btn-success" %>
     <% end %>
   </div>
