@@ -15,18 +15,20 @@
     <div class="col-9">
       <div class="card" style="width: 600px;">
         <img class="card-img" src="/assets/nagano_cake.jpg" height="350">
-        <div class="card-img-overlay">
-          <div class="card-card bg-white" style="border: 1.5px solid;">
-            <p class="card-text" style="font-size: 15px;">
-              <br>
-              ようこそ、ながのCAKEへ！<br>
-              このサイトは、ケーキ販売のECサイトになります。<br>
-              会員でない方も商品の閲覧はできますが、<br>
-              購入には会員登録が必要になります。<br>
-              <br>
-            </p>
+        <% if !customer_signed_in? %>
+          <div class="card-img-overlay">
+            <div class="card-card bg-white" style="border: 1.5px solid;">
+              <p class="card-text" style="font-size: 15px;">
+                <br>
+                ようこそ、ながのCAKEへ！<br>
+                このサイトは、ケーキ販売のECサイトになります。<br>
+                会員でない方も商品の閲覧はできますが、<br>
+                購入には会員登録が必要になります。<br>
+                <br>
+              </p>
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
       <div>
         <h1 style="font-size: 30px;">新着商品</h1>
