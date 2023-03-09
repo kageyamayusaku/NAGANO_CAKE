@@ -13,34 +13,37 @@ class Public::OrdersController < ApplicationController
       @order.address = current_customer.address
       @order.name = current_customer.full_name
     elsif params[:order][:select] == "1"
-      if Address.exists?(params[:order][:address_id])
-        @address = Address.find(params[:order][:address_id])
-        @order.postal_code = @address.postal_code
-        @order.address = @address.address
-        @order.name = @address.name
-      else
-        render :new
-      end
+      @address = Address.find(params[:order][:address_id])
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+      @order.name = @address.name
     elsif params[:order][:select] == "2"
     end
     @cart_items = current_customer.cart_items
     @total = 0
-    @order2 = Order.new
-  end
-
-  def complete
   end
 
   def create
-    @order = Order.new(order_params)
-    @order.shipping_cost = 500
-    @order.customer_id = current_customer.id
-    @order.save
-    @order_details = OrderDetail.new
-    @cart_items = current_customer.cart_items
-    @order_details.
+    @order = current_customer.orders.new(order_params)
+    cart_items = current_customer.cart_items.all
+    if @order.save
+      cart_items.each do |cart|
+        order_details = OrderDetail.new
+        order_details.item_id = cart.item_id
+        order_details.order_id = @order.id
+        order_details.price = cart.item.price
+        order_details.amount = cart.amount
+        order_details.save
+      end
+      redirect_to orders_complete_path
+      cart_items.destroy_all
+    else
+      @order = Order.new(order_params)
+      render :new
+    end
+  end
 
-    redirect_to orders_complete_path
+  def complete
   end
 
   def index
@@ -52,7 +55,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :total_payment)
+    params.require(:order).permit(:payment_method, :postal_code, :address, :name, :shipping_cost, :total_payment)
   end
 
 end
