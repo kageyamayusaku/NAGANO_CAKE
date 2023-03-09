@@ -1,0 +1,120 @@
+<div class="container">
+  <div class="row my-4">
+    <div class="bg-light text-dark" style="margin-left: 150px; font-size: 20px;">
+      <strong>　注文履歴詳細　</strong>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-7">
+      <div style="font-size: 18px;">
+        <strong>注文情報</strong>
+      </div>
+      <table class="table table-bordered">
+        <tr>
+          <td class="table-secondary col-3" style="border: 1.5px solid black;">
+            注文日
+          </td>
+          <td style="border: 1.5px solid black; font-weight: bold;">
+            <%= @order.created_at.to_s(:datetime_jp) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-secondary" style="border: 1.5px solid black;">
+            配送先
+          </td>
+          <td style="border: 1.5px solid black; font-weight: bold;">
+            〒<%= @order.postal_code %><br>
+            <%= @order.address %><br>
+            <%= @order.name %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-secondary" style="border: 1.5px solid black;">
+            支払方法
+          </td>
+          <td style="border: 1.5px solid black; font-weight: bold;">
+            <%= @order.payment_method_i18n %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-secondary" style="border: 1.5px solid black;">
+            ステータス
+          </td>
+          <td style="border: 1.5px solid black; font-weight: bold;">
+            <%= @order.status %>
+          </td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-3">
+      <div style="font-size: 18px;">
+        <strong>請求情報</strong>
+      </div>
+      <table class="table table-bordered">
+        <tr>
+          <td class="table-secondary" style="border: 1.5px solid black;">
+            商品合計
+          </td>
+          <td style="border: 1.5px solid black; font-weight: bold;">
+            <%= @order.total_payment.to_s(:delimited) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-secondary" style="border: 1.5px solid black;">
+            配送料
+          </td>
+          <td style="border: 1.5px solid black; font-weight: bold;">
+            <%= @order.shipping_cost.to_s(:delimited) %>
+          </td>
+        </tr>
+        <tr>
+          <td class="table-secondary" style="border: 1.5px solid black; font-weight: bold;">
+            ご請求額
+          </td>
+          <td style="border: 1.5px solid black; font-weight: bold;">
+            <%= (@order.total_payment + @order.shipping_cost).to_s(:delimited) %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <div style="font-size: 18px;">
+        <strong>注文内容</strong>
+      </div>
+      <table class="table table-bordered">
+        <tr>
+          <td class="table-secondary col-7" style="border: 1.5px solid black;">
+            商品
+          </td>
+          <td class="table-secondary" style="border: 1.5px solid black;">
+            単価(税込)
+          </td>
+          <td class="table-secondary" style="border: 1.5px solid black;">
+            個数
+          </td>
+          <td class="table-secondary" style="border: 1.5px solid black;">
+            小計
+          </td>
+        </tr>
+        <% @order_details.each do |order_detail| %>
+        <tr>
+          <td style="border: 1.5px solid black; font-weight: bold;">
+            <%= order_detail.item.name %>
+          </td>
+          <td style="border: 1.5px solid black; font-weight: bold;">
+            <%= order_detail.tax_price.to_s(:delimited) %>
+          </td>
+          <td style="border: 1.5px solid black; font-weight: bold;">
+            <%= order_detail.amount %>
+          </td>
+          <td style="border: 1.5px solid black; font-weight: bold;">
+            <%= order_detail.subtotal.to_s(:delimited) %>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

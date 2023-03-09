@@ -6,8 +6,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def confirm
-    @order = Order.new(order_params)
-    @order.customer_id = current_customer.id
+    @order = current_customer.orders.new(order_params)
     if params[:order][:select] == "0"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
@@ -47,9 +46,12 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders.all
   end
 
   def show
+    @order = Order.find(params[:id])
+    @order_details = @order.order_details.all
   end
 
   private
