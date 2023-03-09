@@ -1,17 +1,19 @@
 <div class="container">
-  <div class="row">
-    <div class="fs-4 px-4 py-3 my-5 bg-light text-dark font-weight-bold">会員一覧</div>
-    <div class="fs-4 px-4 py-3 my-5 col-auto ml-auto">
+  <div class="row my-4">
+    <div class="bg-light text-dark" style="margin-left: 150px; font-size: 20px;">
+      <strong>　商品一覧　</strong>
+    </div>
+    <div class="ml-auto" style="margin-right: 150px;">
       <%= link_to new_admin_item_path do %>
-      <i class="fas fa-plus"></i>
+        <i class="fas fa-plus fa-2x" style="color: dimgray;"></i>
       <% end %>
     </div>
   </div>
   <div class="row justify-content-md-center">
-    <div class="col-md-8">
-      <table class="table table-hover table-inverse">
+    <div class="col-md-10">
+      <table class="table table-borderless table-hover table-inverse">
         <thead>
-          <tr>
+          <tr class="table-secondary">
             <th>商品ID</th>
             <th>商品名</th>
             <th>税抜価格</th>
