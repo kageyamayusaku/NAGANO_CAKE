@@ -7,6 +7,7 @@ class Admin::GenresController < ApplicationController
       flash[:notice] = ""
       redirect_to admin_genres_path
     else
+      @genres = Genre.all
       render :index
     end
   end
